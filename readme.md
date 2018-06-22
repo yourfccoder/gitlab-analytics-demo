@@ -67,3 +67,13 @@ demo项目目录结构如下：
 3. 实现gitlab-analytics web server的业务逻辑。
 
 
+## 参考资料
+
+* [Initializing Grafana with preconfigured dashboards](https://ops.tips/blog/initialize-grafana-with-preconfigured-dashboards/)
+* [Dockerize Simple Flask App](http://containertutorials.com/docker-compose/flask-simple-app.html)
+* https://hub.docker.com/_/mariadb/
+* https://hub.docker.com/r/grafana/grafana/
+* [Using MySQL in Grafana - Configure the Datasource with Provisioning](http://docs.grafana.org/features/datasources/mysql/#configure-the-datasource-with-provisioning)
+* [Provisioning Grafana](http://docs.grafana.org/administration/provisioning/)
+
+
