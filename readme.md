@@ -34,26 +34,36 @@
 	* 访问地址：http://172.16.154.5:3000/
 	* 容器启动时会自动配置好datasource & dashboard，开箱即用。
 
+demo项目目录结构如下：
+
 ```
 .
-├── docker-compose.yml
-├── gitlab-analytics
+├── docker-compose.yml                 # 这里定义了各个容器
+├── gitlab-analytics               # 基于python flask 实现的 web server
 │   ├── Dockerfile
 │   ├── gitlab_analytics_models.py
 │   ├── requirements.txt
-│   └── web.py
+│   └── web.py                     # 演示了如何启动web服务，向mysql写入数据。
 ├── grafana
 │   ├── dashboards
-│   │   └── mydashboard.json
+│   │   └── mydashboard.json       # 默认的dashboard配置
 │   ├── grafana.ini
 │   └── provisioning
 │       ├── dashboards
-│       │   └── gitlab_analytics.yaml
+│       │   └── gitlab_analytics.yaml   # 自动初始化dashboard
 │       └── datasources
-│           └── gitlab_analytics.yaml
-├── mysql
+│           └── gitlab_analytics.yaml   # 自动初始化mysql datasource
+├── mysql      # 挂载至/docker-entrypoint-initdb.d之后自动初始化mysql表结构
 │   ├── 1.add_readonly_user.sql
 │   ├── 2.create_table.sql
 │   └── 3.sample_data.sql
 └── readme.md
 ```
+
+本项目仅用于演示容器部署方案。完成最终gitlab-analytics业务，还需要做以下事情：
+
+1. 定义好mysql表结构，更新 `mysql/2.create_table.sql`，删除`mysql/3.sample_data.sql`。
+2. 定义好grafana dashboard，将dashboard配置导出存放在`grafana/dashboards/mydashboard.json`。
+3. 实现gitlab-analytics web server的业务逻辑。
+
+
